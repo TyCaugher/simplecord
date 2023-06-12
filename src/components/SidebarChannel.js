@@ -1,4 +1,4 @@
-import './SidebarChannel.css'
+import './css/SidebarChannel.css'
 import React from 'react'
 
 function SidebarChannel() {

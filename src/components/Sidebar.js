@@ -1,24 +1,30 @@
-import React, { useState }  from "react";
-import "./Sidebar.css";
-//import db, { auth } from "./Firebase";
+import React, { useEffect, useState }  from "react";
+import "./css/Sidebar.css";
+//import db, { auth } from "firebase";
+// for importing a db class i'll make in the future.
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import AddIcon from "@material-ui/icons/Add"; 
 import SidebarChannel from "./SidebarChannel";
 import { Avatar } from "@material-ui/core";
 import { HeadsetRounded, MicNoneRounded, Settings, SignalCellular3Bar } from "@material-ui/icons";
+import { useSelector } from "react-redux";
 
 function Sidebar() {
-
     const [channels, setChannels] = useState([]);
+    //const user = useSelector(selectUser)
 
-  const handleAddChannel = () => {
-    const channelName = prompt("Enter channel name");
+    useEffect(() => {
+        //more firebase shit later
+    })
 
-    if (channelName) {
-      // firebase db call
-      // somewhere here idk
+    const handleAddChannel = () => {
+        const channelName = prompt("Enter channel name");
+
+        if (channelName) {
+            // firebase db call
+            // somewhere here idk
+        }
     }
-  }
 
     return (
         <div className="sidebar">
