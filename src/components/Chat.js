@@ -1,3 +1,4 @@
+import { AddCircleRounded } from "@material-ui/icons"
 import ChatHeader from "./ChatHeader"
 import "./css/Chat.css"
 import React from 'react'
@@ -11,7 +12,7 @@ function Chat() {
 
         </div>
         <div className="chat__input">
-            
+            <AddCircleRounded fontSize="large" />
         </div>
     </div>
   )

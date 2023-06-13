@@ -1,28 +1,37 @@
 import React, { useEffect, useState }  from "react";
 import "./css/Sidebar.css";
-//import db, { auth } from "firebase";
+import db, { auth } from "../Firebase";
 // for importing a db class i'll make in the future.
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import AddIcon from "@material-ui/icons/Add"; 
 import SidebarChannel from "./SidebarChannel";
 import { Avatar } from "@material-ui/core";
+import { selectUser } from "../features/userSlice"
 import { HeadsetRounded, MicNoneRounded, Settings, SignalCellular3Bar } from "@material-ui/icons";
 import { useSelector } from "react-redux";
 
 function Sidebar() {
     const [channels, setChannels] = useState([]);
-    //const user = useSelector(selectUser)
+    const user = useSelector(selectUser)
 
     useEffect(() => {
-        //more firebase shit later
-    })
+        db.collection("channels").onSnapshot((snapshot) =>
+        setChannels(
+            snapshot.docs.map((doc) => ({
+                id: doc.id,
+                channel: doc.data(),
+            }))
+        )
+    );
+    }, []);
 
     const handleAddChannel = () => {
         const channelName = prompt("Enter channel name");
-
+        // Add the channel to firestore collection.
         if (channelName) {
-            // firebase db call
-            // somewhere here idk
+            db.collection("channels").add({
+                channelName: channelName,
+            });
         }
     }
 
