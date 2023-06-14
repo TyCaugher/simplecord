@@ -22,3 +22,11 @@
     object-fit: contain;
     height: 150px;
 }
+
+.login > h3 {
+    color: white;
+}
+
+.login > h1 {
+    color: white;
+}
