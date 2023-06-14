@@ -24,3 +24,5 @@ yarn-error.log*
 src/firebase/firebase.js
 src/Firebase.js
 firebase-tools-instant-win.exe
+.firebase/hosting.cHVibGlj.cache
+.firebase/hosting.YnVpbGQ.cache
