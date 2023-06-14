@@ -5,39 +5,41 @@ import { auth } from "./Firebase"
 import "./App.css";import Sidebar from "./components/Sidebar";
 import Login from "./screens/Login"
 import Chat from "./components/Chat";
-function App() {    
+function App() {
+  const dispatch = useDispatch();
+  const user = useSelector(selectUser);
 
-    const user = useSelector(selectUser);
-    const dispatch = useDispatch();
+  useEffect(() => {
+    auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        // The user is logged in
+        dispatch(
+          login({
+            uid: authUser.uid,
+            photo: authUser.photoURL,
+            email: authUser.email,
+            displayName: authUser.displayName,
+          })
+        );
+      } else {
+        // Logging out.
+        dispatch(logout());
+      }
+    });
+  }, [dispatch]);
 
-    useEffect(() => {
-      auth.onAuthStateChanged((authUser) => {
-        if (authUser) {
-          // The user is now logged in
-          dispatch(
-            login({
-              uid: authUser.photoURL,
-              email: authUser.email,
-              displayName: authUser.displayName,
-            })
-          );
-        } else {
-          //User is logged out
-          dispatch(logout());
-        }
-      })
-    })
-
-     return (
-      <div className="app">   
-        {user ? (
-          <>
-            <Sidebar />
-            <Chat />
-          </>
-        ) : (
-          <Login />
-        )}
-      </div>
+  return (
+    <div className="app">
+      {user ? (
+        <>
+          <Sidebar />
+          <Chat />
+        </>
+      ) : (
+        <Login />
+      )}
+    </div>
   );
-} export default App;
+}
+
+export default App;

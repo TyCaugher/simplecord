@@ -7,14 +7,14 @@ export const appSlice = createSlice({
     channelName: null,
   },
   reducers: {
-    setChannelInfp: (state, action) => {
+    setChannelInfo: (state, action) => {
       state.channelId = action.payload.channelId;
       state.channelName = action.payload.channelName;
     },
   },
 });
 
-export const { login, logout } = appSlice.actions;
+export const { setChannelInfo } = appSlice.actions;
 
 export const selectChannelId = (state) => state.app.channelId;
 export const selectChannelName = (state) => state.app.channelName;
